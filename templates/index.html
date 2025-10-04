@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PowerPing</title>
+        <meta charset="UTF-8">
+        {%block styles%}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/styles/style.css">
+        {%endblock%}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../static/JS/myScript.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+    <!--nav bar-->
+    <div id="NavBar"> 
+        <img src="../static/logos/logo.png" class = "Logo" alt = "logo">
+        <a class = 'TabButton' id = 'Name'>PowerPing</a>
+        <a class = 'TabButton' href="/">Home</a>
+        <a class = 'TabButton' href="/Register">Register Battery</a>
+
+    </div>
+
+    <!--start of page-->
+
+    <section id = "BatteryInfo">
+        <h1>Registered Batteries</h1>
+        <div class = "container-fluid">
+            <div class = "row">
+                {% for battery in batteries %}
+                <div class = "col-lg-4 col-md-4 col-sm-12 col">
+                    <div class = "block">
+                        <h1>{{battery[1]}}</h1>
+                        <p>{{battery[0]}}</p>
+                        {% if battery[2] == NONE %}
+                        <p></br>Warning: None</p>
+                        {% else %}
+                        <p></br>Warning: {{battery[2]}}</p>
+                        {% endif %}
+                        {% if battery[2] == 1 %}
+                        <p style="color:orange;">&#9888; Please check this battery soon. &#9888;</p>
+                        {% elif battery[2] == 2 %}
+                        <p style="color:red;">&#9888; Please check this battery immediately. &#9888;</p>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+</body>
+</html>
